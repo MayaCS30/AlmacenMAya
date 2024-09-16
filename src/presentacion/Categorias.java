@@ -4,7 +4,11 @@
  */
 package presentacion;
 
+import datos.CategoriaDAO;
 import java.awt.Color;
+import javax.swing.table.TableRowSorter;
+import javax.swing.text.TabableView;
+import negocio.CategoriaControl;
 
 /**
  *
@@ -12,12 +16,24 @@ import java.awt.Color;
  */
 public class Categorias extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Categorias
-     */
+    
+    //invocamos una clase y le damos como propiedad una variables
+    private final CategoriaControl CONTROL;
+            
     public Categorias() {
         initComponents();
+        this.CONTROL= new CategoriaControl();
+        this.listar("");
+        tablalistado.setEnabled(false);
        
+    }
+    
+    //metodos CRUD
+    private void listar(String texto){
+        tablalistado.setModel(this.CONTROL.listar(texto));
+        TableRowSorter orden = new TableRowSorter(tablalistado.getModel());
+        tablalistado.setRowSorter(orden);
+        txttotalregistros.setText("Mostrado "+ this.CONTROL.totalMostrado()+ " de un total de "+this.CONTROL.total()+" registros");
     }
 
     /**
@@ -40,7 +56,7 @@ public class Categorias extends javax.swing.JInternalFrame {
         tablalistado = new javax.swing.JTable();
         btndesactivar = new javax.swing.JButton();
         btnactivar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        txttotalregistros = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
@@ -107,15 +123,13 @@ public class Categorias extends javax.swing.JInternalFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 204));
         jScrollPane1.setBorder(null);
 
+        tablalistado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tablalistado);
@@ -132,8 +146,7 @@ public class Categorias extends javax.swing.JInternalFrame {
         btnactivar.setText("Activar Categoria");
         btnactivar.setBorder(null);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Total de Registro");
+        txttotalregistros.setText("Total de Registro: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,27 +156,24 @@ public class Categorias extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtbuscarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnbuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnregistrar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btneditar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtbuscarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnregistrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btneditar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(btndesactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80))))
+                        .addGap(95, 95, 95)
+                        .addComponent(txttotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,10 +188,11 @@ public class Categorias extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btndesactivar, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnactivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btndesactivar, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                        .addComponent(txttotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnactivar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -368,7 +379,6 @@ public class Categorias extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -381,5 +391,6 @@ public class Categorias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtbuscarcategoria;
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txttotalregistros;
     // End of variables declaration//GEN-END:variables
 }
