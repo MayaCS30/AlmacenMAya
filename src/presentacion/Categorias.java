@@ -33,7 +33,7 @@ public class Categorias extends javax.swing.JInternalFrame {
         tablalistado.setModel(this.CONTROL.listar(texto));
         TableRowSorter orden = new TableRowSorter(tablalistado.getModel());
         tablalistado.setRowSorter(orden);
-        txttotalregistros.setText("Mostrado "+ this.CONTROL.totalMostrado()+ " de un total de "+this.CONTROL.total()+" registros");
+        txttotalregistros.setText("Mostrando "+ this.CONTROL.totalMostrado()+ " de un total de "+this.CONTROL.total()+" registros");
     }
 
     /**
@@ -49,7 +49,7 @@ public class Categorias extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtbuscarcategoria = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
+        btnbuscarcategoria = new javax.swing.JButton();
         btnregistrar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,13 +100,13 @@ public class Categorias extends javax.swing.JInternalFrame {
             }
         });
 
-        btnbuscar.setBackground(new java.awt.Color(255, 153, 255));
-        btnbuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/lupa.png"))); // NOI18N
-        btnbuscar.setText("Buscar Categoria");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnbuscarcategoria.setBackground(new java.awt.Color(255, 153, 255));
+        btnbuscarcategoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnbuscarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/lupa.png"))); // NOI18N
+        btnbuscarcategoria.setText("Buscar Categoria");
+        btnbuscarcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
+                btnbuscarcategoriaActionPerformed(evt);
             }
         });
 
@@ -160,7 +160,7 @@ public class Categorias extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtbuscarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnbuscar)
+                        .addComponent(btnbuscarcategoria)
                         .addGap(18, 18, 18)
                         .addComponent(btnregistrar)
                         .addGap(18, 18, 18)
@@ -182,7 +182,7 @@ public class Categorias extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtbuscarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar)
+                    .addComponent(btnbuscarcategoria)
                     .addComponent(btnregistrar)
                     .addComponent(btneditar))
                 .addGap(27, 27, 27)
@@ -319,9 +319,9 @@ public class Categorias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnbuscarActionPerformed
+    private void btnbuscarcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarcategoriaActionPerformed
+        this.listar(txtbuscarcategoria.getText());
+    }//GEN-LAST:event_btnbuscarcategoriaActionPerformed
 
     private void txtbuscarcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarcategoriaActionPerformed
         // TODO add your handling code here:
@@ -372,7 +372,7 @@ public class Categorias extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactivar;
-    private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btnbuscarcategoria;
     private javax.swing.JButton btndesactivar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnregistrar;

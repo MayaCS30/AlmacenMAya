@@ -70,7 +70,23 @@ public class CategoriaDAO implements CategoriaInterface<Categoria>{
 
     @Override
     public boolean actualizar(Categoria obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        resp=false;
+        try{
+            ps=CON.cadena.prepareStatement("UPDATE categorias SET nombre=?, descripcion=? WHERE id_categoria=?");
+            ps.setString(1,obj.getNombre());
+            ps.setString(2, obj.getDescripcion());
+            ps.setInt(3, obj.getIdcategoria());
+            if(ps.executeUpdate() > 0){
+               resp=true;
+           }
+           ps.close();
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null,"No se puede actualizar los datos"+ e.getMessage());
+        }finally{
+            ps=null;
+            CON.desconectar();
+        }
+        return resp;
     }
 
     @Override

@@ -88,7 +88,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txtbuscarcategoria" min="-2" pref="266" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnbuscar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnbuscarcategoria" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnregistrar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtbuscarcategoria" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="btnbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnbuscarcategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnregistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btneditar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -160,7 +160,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbuscarcategoriaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnbuscar">
+            <Component class="javax.swing.JButton" name="btnbuscarcategoria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="99" red="ff" type="rgb"/>
@@ -174,7 +174,7 @@
                 <Property name="text" type="java.lang.String" value="Buscar Categoria"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscarcategoriaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnregistrar">
