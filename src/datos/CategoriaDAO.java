@@ -54,7 +54,8 @@ public class CategoriaDAO implements CategoriaInterface<Categoria>{
         resp=false;
         try {
             ps=CON.conectar().prepareStatement("INSERT INTO categorias(nombre,descripcion,condicion) VALUES(?,?,1)");
-            ps.setString(1, obj.getDescripcion());
+            ps.setString(1, obj.getNombre());
+            ps.setString(2, obj.getDescripcion());
             if(ps.executeUpdate() > 0){
                 resp=true;
             }
@@ -72,7 +73,7 @@ public class CategoriaDAO implements CategoriaInterface<Categoria>{
     public boolean actualizar(Categoria obj) {
         resp=false;
         try{
-            ps=CON.cadena.prepareStatement("UPDATE categorias SET nombre=?, descripcion=? WHERE id_categoria=?");
+            ps=CON.conectar().prepareStatement("UPDATE categorias SET nombre=?, descripcion=? WHERE id_categoria=?");
             ps.setString(1,obj.getNombre());
             ps.setString(2, obj.getDescripcion());
             ps.setInt(3, obj.getIdcategoria());

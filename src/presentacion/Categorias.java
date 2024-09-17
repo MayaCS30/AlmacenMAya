@@ -20,13 +20,16 @@ public class Categorias extends javax.swing.JInternalFrame {
     
     //invocamos una clase y le damos como propiedad una variables
     private final CategoriaControl CONTROL;
+    private String accion;
+    private String nombreAnt;
             
     public Categorias() {
         initComponents();
         this.CONTROL= new CategoriaControl();
         this.listar("");
-        
-       
+        this.accion = "Guardar";
+        //tablalistado.setEnabled(false);
+        tabGeneral.setEnabledAt(1, false);   
     }
     
     //metodos CRUD
@@ -73,8 +76,9 @@ public class Categorias extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnguardarcategoria = new javax.swing.JButton();
+        btncancelarcategoria = new javax.swing.JButton();
+        txtID = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -123,11 +127,21 @@ public class Categorias extends javax.swing.JInternalFrame {
         btnregistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/registro.png"))); // NOI18N
         btnregistrar.setText("Registrar Categoria");
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
+            }
+        });
 
         btneditar.setBackground(new java.awt.Color(255, 153, 255));
         btneditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btneditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/editar.png"))); // NOI18N
         btneditar.setText("Editar Categoria");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 204));
         jScrollPane1.setBorder(null);
@@ -182,7 +196,7 @@ public class Categorias extends javax.swing.JInternalFrame {
                         .addComponent(btnbuscarcategoria)
                         .addGap(18, 18, 18)
                         .addComponent(btnregistrar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btneditar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -192,7 +206,7 @@ public class Categorias extends javax.swing.JInternalFrame {
                         .addComponent(btnactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
                         .addComponent(txttotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,19 +270,29 @@ public class Categorias extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("(*) Indica que es un campos obligatorio");
 
-        jButton1.setBackground(new java.awt.Color(204, 153, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/guardar.png"))); // NOI18N
-        jButton1.setText(" Guardar");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguardarcategoria.setBackground(new java.awt.Color(204, 153, 255));
+        btnguardarcategoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnguardarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/guardar.png"))); // NOI18N
+        btnguardarcategoria.setText(" Guardar");
+        btnguardarcategoria.setBorder(null);
+        btnguardarcategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguardarcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarcategoriaActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(204, 153, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/cancel_1.png"))); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncancelarcategoria.setBackground(new java.awt.Color(204, 153, 255));
+        btncancelarcategoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btncancelarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/cancel_1.png"))); // NOI18N
+        btncancelarcategoria.setText("Cancelar");
+        btncancelarcategoria.setBorder(null);
+        btncancelarcategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncancelarcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarcategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -284,22 +308,27 @@ public class Categorias extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtnombre)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtnombre)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(304, 304, 304)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnguardarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(396, Short.MAX_VALUE))
+                        .addComponent(btncancelarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,8 +340,8 @@ public class Categorias extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnguardarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncancelarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
 
@@ -424,15 +453,93 @@ public class Categorias extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnactivarActionPerformed
 
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        tabGeneral.setEnabledAt(1,true);
+        tabGeneral.setEnabledAt(0, false);
+        tabGeneral.setSelectedIndex(1);
+        this.accion="Guardar";
+        btnguardarcategoria.setText("Guardar");
+    }//GEN-LAST:event_btnregistrarActionPerformed
+
+    private void btncancelarcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarcategoriaActionPerformed
+        tabGeneral.setEnabledAt(0, true);
+        tabGeneral.setEnabledAt(1, false);
+        tabGeneral.setSelectedIndex(0);
+                
+    }//GEN-LAST:event_btncancelarcategoriaActionPerformed
+
+    private void btnguardarcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarcategoriaActionPerformed
+        if(txtnombre.getText().length()== 0 || txtnombre.getText().length()>20){
+            JOptionPane.showMessageDialog(this,"Debes ingresar un nombre y no debe ser mayor a 20 caracteres, "+ "es obligatorio",
+                    "Advertencia",JOptionPane.WARNING_MESSAGE);
+            txtnombre.requestFocus();
+            return;
+        }
+        if(txtdescripcion.getText().length()== 0 || txtdescripcion.getText().length()>255){
+            JOptionPane.showMessageDialog(this,"Debes ingresar una descripción y no debe ser mayor a 255 caracteres, "+ "es obligatorio",
+                    "Advertencia",JOptionPane.WARNING_MESSAGE);
+            txtdescripcion.requestFocus();
+            return;
+        }
+        String resp;
+        if(this.accion.equals("Editar")){
+            //condicional para editar
+            resp = this.CONTROL.actualizar(Integer.parseInt(txtID.getText()),txtnombre.getText(),this.nombreAnt,txtdescripcion.getText());
+            if(resp.equals("OK")){
+                this.mensajeOK("Actualizado correctamente");
+                this.listar("");
+                tabGeneral.setSelectedIndex(0);
+                tabGeneral.setEnabledAt(1, false);
+                tabGeneral.setEnabledAt(0, true);
+            }else{
+                this.mensajeError(resp);
+            }
+        }else{
+            //condicionar para guardar
+            resp=this.CONTROL.insertar(txtnombre.getText(), txtdescripcion.getText());
+            if(resp.equals("OK")){
+                this.mensajeOK("Registrado correctamente");
+                this.mensajeOK(resp);
+                this.listar("");
+                tabGeneral.setSelectedIndex(0);
+                tabGeneral.setEnabledAt(1, false);
+                tabGeneral.setEnabledAt(0, true);
+            }else{
+                this.mensajeError(resp);
+            }
+        }
+    }//GEN-LAST:event_btnguardarcategoriaActionPerformed
+
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        if(tablalistado.getSelectedRowCount()==1){
+            String id = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 0));
+            String nombre = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 1));
+            this.nombreAnt= String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 1));
+            String descripcion = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 2));
+            
+            txtID.setText(id);
+            txtnombre.setText(nombre);
+            txtdescripcion.setText(descripcion);
+            
+            tabGeneral.setEnabledAt(0, false);
+            tabGeneral.setEnabledAt(1, true);
+            tabGeneral.setSelectedIndex(1);
+            this.accion="Editar";
+            btnguardarcategoria.setText("Editar");
+        }else{
+            this.mensajeError("Selecciona un registro para editar");
+        }
+    }//GEN-LAST:event_btneditarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactivar;
     private javax.swing.JButton btnbuscarcategoria;
+    private javax.swing.JButton btncancelarcategoria;
     private javax.swing.JButton btndesactivar;
     private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnguardarcategoria;
     private javax.swing.JButton btnregistrar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,6 +550,7 @@ public class Categorias extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane tabGeneral;
     private javax.swing.JTable tablalistado;
+    private javax.swing.JLabel txtID;
     private javax.swing.JTextField txtbuscarcategoria;
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtnombre;
