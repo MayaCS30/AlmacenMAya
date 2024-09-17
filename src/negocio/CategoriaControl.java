@@ -72,4 +72,21 @@ public class CategoriaControl {
     public int totalMostrado(){
         return this.registrosMostrados;
     }
+    
+    //metodo para desactivar categoria
+    public String desactivar(int id){
+        if(DATOS.desactivar(id)){
+            return "OK";
+        }else{
+            return "No se puede desactivar la categoria";
+        }
+    }
+    
+    public String activar(int id){
+        if(DATOS.activar(id)){
+            return "OK";
+        }else{
+            return "No se puede activar la categoria";
+        }
+    }
 }

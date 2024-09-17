@@ -6,6 +6,7 @@ package presentacion;
 
 import datos.CategoriaDAO;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.TabableView;
 import negocio.CategoriaControl;
@@ -24,7 +25,7 @@ public class Categorias extends javax.swing.JInternalFrame {
         initComponents();
         this.CONTROL= new CategoriaControl();
         this.listar("");
-        tablalistado.setEnabled(false);
+        
        
     }
     
@@ -34,6 +35,14 @@ public class Categorias extends javax.swing.JInternalFrame {
         TableRowSorter orden = new TableRowSorter(tablalistado.getModel());
         tablalistado.setRowSorter(orden);
         txttotalregistros.setText("Mostrando "+ this.CONTROL.totalMostrado()+ " de un total de "+this.CONTROL.total()+" registros");
+    }
+    
+    //metodo para las ventanas emergentes
+    private void mensajeError(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje,"ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+    private void mensajeOK(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje,"Exitoso",JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -139,12 +148,22 @@ public class Categorias extends javax.swing.JInternalFrame {
         btndesactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/x.png"))); // NOI18N
         btndesactivar.setText("Desactivar Categoria");
         btndesactivar.setBorder(null);
+        btndesactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndesactivarActionPerformed(evt);
+            }
+        });
 
         btnactivar.setBackground(new java.awt.Color(153, 255, 153));
         btnactivar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/check.png"))); // NOI18N
         btnactivar.setText("Activar Categoria");
         btnactivar.setBorder(null);
+        btnactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactivarActionPerformed(evt);
+            }
+        });
 
         txttotalregistros.setText("Total de Registro: ");
 
@@ -368,6 +387,42 @@ public class Categorias extends javax.swing.JInternalFrame {
            txtbuscarcategoria.setForeground(new Color(153,153,153));
         } 
     }//GEN-LAST:event_txtbuscarcategoriaFocusLost
+
+    private void btndesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndesactivarActionPerformed
+        if(tablalistado.getSelectedRowCount()==1){
+            String id = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 0));
+            String nombre = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 1));
+            if(JOptionPane.showConfirmDialog(this, "¿Deseas desactivar el registro: "+nombre+" ?","Desactivar",JOptionPane.YES_NO_OPTION)== 0){
+                String resp=this.CONTROL.desactivar(Integer.parseInt(id));
+                if(resp.equals("OK")){
+                    this.mensajeOK("Registro desactivado");
+                    this.listar("");
+                }else{
+                    this.mensajeError(resp);
+                }
+            }
+        }else{
+            this.mensajeError("Selecciona un registro para desactivar");
+        }
+    }//GEN-LAST:event_btndesactivarActionPerformed
+
+    private void btnactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactivarActionPerformed
+        if(tablalistado.getSelectedRowCount()==1){
+            String id = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 0));
+            String nombre = String.valueOf(tablalistado.getValueAt(tablalistado.getSelectedRow(), 1));
+            if(JOptionPane.showConfirmDialog(this, "¿Deseas activar el registro: "+nombre+" ?","activar",JOptionPane.YES_NO_OPTION)== 0){
+                String resp=this.CONTROL.activar(Integer.parseInt(id));
+                if(resp.equals("OK")){
+                    this.mensajeOK("Registro activado");
+                    this.listar("");
+                }else{
+                    this.mensajeError(resp);
+                }
+            }
+        }else{
+            this.mensajeError("Selecciona un registro para activar");
+        }
+    }//GEN-LAST:event_btnactivarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
