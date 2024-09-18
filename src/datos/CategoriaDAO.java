@@ -173,4 +173,26 @@ public class CategoriaDAO implements CategoriaInterface<Categoria>{
         return resp;
     }
     
+
+
+    //metodo para la consulta SQL para seleccionar categorias
+    public List<Categoria>seleccionar(){
+        List<Categoria> registros = new ArrayList();
+        try{
+            ps=CON.conectar().prepareStatement("SELECT id_categoria,nombre FROM categorias ORDER BY nombre ASC");
+            rs=ps.executeQuery();
+            while(rs.next()){
+                registros.add(new Categoria(rs.getInt(1),rs.getString(2)));
+            }
+            ps.close();
+            rs.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"No se puede cargar categorias "+ e.getMessage());
+        }finally{
+            ps=null;
+            rs=null;
+            CON.desconectar();
+        }
+        return registros;
+    }
 }

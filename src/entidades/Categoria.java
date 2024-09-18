@@ -23,6 +23,11 @@ public class Categoria {
         this.condicion = condicion;
     }
     
+    public Categoria(int idcategoria, String nombre){
+        this.idcategoria= idcategoria;
+        this.nombre= nombre;
+    }
+    
     //getter and setter
 
     public int getIdcategoria() {
