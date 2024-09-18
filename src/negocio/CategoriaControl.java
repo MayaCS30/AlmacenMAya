@@ -51,7 +51,7 @@ public class CategoriaControl {
         }
         return this.modeloTabla;
     }
-    //metodo para registrar categotia
+    //metodo para registrar categoria
     public String insertar(String nombre, String descripcion){
         if(DATOS.existe(nombre)){
             return"El nombre de la categoria se encuentra en nuestra BD";

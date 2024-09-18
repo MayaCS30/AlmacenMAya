@@ -28,6 +28,7 @@ public class Productos extends javax.swing.JInternalFrame {
         this.CONTROL=new ProductoControl();
         this.cargarCategorias();
     }
+
     
     //metodo para cargar categorias
     private void cargarCategorias(){
@@ -52,10 +53,10 @@ public class Productos extends javax.swing.JInternalFrame {
         btnbuscar3 = new javax.swing.JButton();
         btnregistrar3 = new javax.swing.JButton();
         btneditar3 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        tablalistadoproductos = new javax.swing.JScrollPane();
         tablalistado3 = new javax.swing.JTable();
-        btndesactivar3 = new javax.swing.JButton();
-        btnactivar3 = new javax.swing.JButton();
+        btndesactivarproductos = new javax.swing.JButton();
+        btnactivarproductos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         cbocategoria = new javax.swing.JComboBox<>();
@@ -133,34 +134,31 @@ public class Productos extends javax.swing.JInternalFrame {
         btneditar3.setText("Editar Producto");
         btneditar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jScrollPane4.setBackground(new java.awt.Color(204, 255, 255));
-        jScrollPane4.setBorder(null);
-        jScrollPane4.setForeground(new java.awt.Color(0, 102, 102));
+        tablalistadoproductos.setBackground(new java.awt.Color(204, 255, 255));
+        tablalistadoproductos.setBorder(null);
+        tablalistadoproductos.setForeground(new java.awt.Color(0, 102, 102));
 
         tablalistado3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane4.setViewportView(tablalistado3);
+        tablalistadoproductos.setViewportView(tablalistado3);
 
-        btndesactivar3.setBackground(new java.awt.Color(255, 153, 153));
-        btndesactivar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/x.png"))); // NOI18N
-        btndesactivar3.setText("Desactivar Producto");
-        btndesactivar3.setBorder(null);
-        btndesactivar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btndesactivarproductos.setBackground(new java.awt.Color(255, 153, 153));
+        btndesactivarproductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/x.png"))); // NOI18N
+        btndesactivarproductos.setText("Desactivar Producto");
+        btndesactivarproductos.setBorder(null);
+        btndesactivarproductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnactivar3.setBackground(new java.awt.Color(153, 255, 153));
-        btnactivar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/check.png"))); // NOI18N
-        btnactivar3.setText("Activar Producto");
-        btnactivar3.setBorder(null);
-        btnactivar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnactivarproductos.setBackground(new java.awt.Color(153, 255, 153));
+        btnactivarproductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/check.png"))); // NOI18N
+        btnactivarproductos.setText("Activar Producto");
+        btnactivarproductos.setBorder(null);
+        btnactivarproductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel8.setText("Total de Registro");
 
@@ -185,15 +183,15 @@ public class Productos extends javax.swing.JInternalFrame {
                                 .addComponent(btneditar3))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
-                                .addComponent(btndesactivar3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btndesactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnactivar3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(102, 102, 102)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,12 +203,12 @@ public class Productos extends javax.swing.JInternalFrame {
                     .addComponent(btnbuscar3)
                     .addComponent(btnregistrar3)
                     .addComponent(btneditar3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnactivar3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btndesactivar3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btndesactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
@@ -222,18 +220,18 @@ public class Productos extends javax.swing.JInternalFrame {
             .addGap(0, 1183, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 487, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 13, Short.MAX_VALUE)
+                    .addContainerGap()
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 13, Short.MAX_VALUE)))
+                    .addContainerGap(13, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Listado de productos", jPanel1);
@@ -656,10 +654,10 @@ public class Productos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnactivar3;
+    private javax.swing.JButton btnactivarproductos;
     private javax.swing.JButton btnagregarimagen;
     private javax.swing.JButton btnbuscar3;
-    private javax.swing.JButton btndesactivar3;
+    private javax.swing.JButton btndesactivarproductos;
     private javax.swing.JButton btneditar3;
     private javax.swing.JButton btnregistrar3;
     private javax.swing.JComboBox<String> cbocategoria;
@@ -683,11 +681,11 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblimagen;
     private javax.swing.JTable tablalistado3;
+    private javax.swing.JScrollPane tablalistadoproductos;
     private javax.swing.JTextField txtbuscarnombre;
     private javax.swing.JTextField txtcantidadpro;
     private javax.swing.JTextField txtcodigopro;
