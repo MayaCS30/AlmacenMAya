@@ -6,7 +6,7 @@ public class Productos {
     
     //variables
     private int id_producto;
-    private int categoria_id;
+    private String nombre_categoria;
     private String nombre_producto;
     private String descripcion_producto;
     private String imagen_producto;
@@ -21,12 +21,12 @@ public class Productos {
 
     public Productos() {
     }
+
     
     //constructor con parametros
-
-    public Productos(int id_producto, int categoria_id, String nombre_producto, String descripcion_producto, String imagen_producto, String codigo_producto, String marcar_producto, int cantidad_producto, String fecha_vencimiento, double precio_compra, boolean condicion) {
+    public Productos(int id_producto, String nombre_categoria, String nombre_producto, String descripcion_producto, String imagen_producto, String codigo_producto, String marcar_producto, int cantidad_producto, String fecha_vencimiento, double precio_compra, boolean condicion) {
         this.id_producto = id_producto;
-        this.categoria_id = categoria_id;
+        this.nombre_categoria = nombre_categoria;
         this.nombre_producto = nombre_producto;
         this.descripcion_producto = descripcion_producto;
         this.imagen_producto = imagen_producto;
@@ -39,7 +39,7 @@ public class Productos {
     }
     
     //getter and setter
-
+    
     public int getId_producto() {
         return id_producto;
     }
@@ -48,12 +48,12 @@ public class Productos {
         this.id_producto = id_producto;
     }
 
-    public int getCategoria_id() {
-        return categoria_id;
+    public String getNombre_categoria() {
+        return nombre_categoria;
     }
 
-    public void setCategoria_id(int categoria_id) {
-        this.categoria_id = categoria_id;
+    public void setNombre_categoria(String nombre_categoria) {
+        this.nombre_categoria = nombre_categoria;
     }
 
     public String getNombre_producto() {
@@ -127,12 +127,14 @@ public class Productos {
     public void setCondicion(boolean condicion) {
         this.condicion = condicion;
     }
-    
+
     //ToString
 
     @Override
     public String toString() {
-        return "Productos{" + "id_producto=" + id_producto + ", categoria_id=" + categoria_id + ", nombre_producto=" + nombre_producto + ", descripcion_producto=" + descripcion_producto + ", imagen_producto=" + imagen_producto + ", codigo_producto=" + codigo_producto + ", marcar_producto=" + marcar_producto + ", cantidad_producto=" + cantidad_producto + ", fecha_vencimiento=" + fecha_vencimiento + ", precio_compra=" + precio_compra + ", condicion=" + condicion + '}';
-    } 
+        return "Productos{" + "id_producto=" + id_producto + ", nombre_categoria=" + nombre_categoria + ", nombre_producto=" + nombre_producto + ", descripcion_producto=" + descripcion_producto + ", imagen_producto=" + imagen_producto + ", codigo_producto=" + codigo_producto + ", marcar_producto=" + marcar_producto + ", cantidad_producto=" + cantidad_producto + ", fecha_vencimiento=" + fecha_vencimiento + ", precio_compra=" + precio_compra + ", condicion=" + condicion + '}';
+    }
+    
+   
     
 }

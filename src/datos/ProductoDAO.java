@@ -29,12 +29,37 @@ public class ProductoDAO implements ProductoInterface<Productos>{
     public List<Productos> listar(String texto) {
         List<Productos> registros = new ArrayList<>();
         try{
-            ps=CON.conectar().prepareStatement("SELECT * FROM productos WHERE nombre_producto LIKE ?");
-            ps.setString(1,"%" + texto + "%");
-            rs=ps.executeQuery();
-            while(rs.next()){
-                registros.add(new Productos(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getDouble(10),rs.getBoolean(11)));
-            }
+            // Aquí hacemos un JOIN entre productos y categorias
+            ps = CON.conectar().prepareStatement(
+                "SELECT p.id_producto AS Idproducto, " +
+                "ca.nombre AS nombre_categoria, " +
+                "p.nombre_producto, p.descripcion_producto, " +
+                "p.imagen_producto, p.codigo_producto, " +
+                "p.marca_producto, p.cantidad_producto, " +
+                "p.fecha_vencimiento, p.precio_compra, " +
+                "p.condicion " +
+                "FROM productos p " +
+                "INNER JOIN categorias ca ON p.categoria_id = ca.id_categoria " +
+                "WHERE p.nombre_producto LIKE ?"
+        );
+        
+        ps.setString(1, "%" + texto + "%");
+        rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            registros.add(new Productos(rs.getInt("idproducto"),
+                                        rs.getString("nombre_categoria"),  // Ahora obtenemos el nombre de la categoría
+                                        rs.getString("nombre_producto"),
+                                        rs.getString("descripcion_producto"),
+                                        rs.getString("imagen_producto"),
+                                        rs.getString("codigo_producto"),
+                                        rs.getString("marca_producto"),
+                                        rs.getInt("cantidad_producto"),
+                                        rs.getString("fecha_vencimiento"),
+                                        rs.getDouble("precio_compra"),
+                                        rs.getBoolean("condicion")
+            ));
+        }
             ps.close();
             rs.close();
         }catch(SQLException e){

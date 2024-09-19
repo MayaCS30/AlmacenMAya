@@ -59,7 +59,7 @@ public class ProductoControl {
                 condicion="Inactivo";
             }
             registro[0]=Integer.toString(item.getId_producto());
-            registro[1]=Integer.toString(item.getCategoria_id());
+            registro[1]=item.getNombre_categoria();
             registro[2]=item.getNombre_producto();
             registro[3]=item.getDescripcion_producto();
             registro[4]=item.getImagen_producto();
@@ -71,7 +71,7 @@ public class ProductoControl {
             registro[10]=condicion;
             
             this.modeloTabla.addRow(registro);
-            this.registrosMostrados=this.registrosMostrados+1;
+            this.registrosMostrados=this.registrosMostrados++;
         }
         return this.modeloTabla;
     }
@@ -84,16 +84,16 @@ public class ProductoControl {
     }
     
     //metodo para desactivar categoria
-    public String desactivar(int id){
-        if(DATOS.desactivar(id)){
+    public String desactivar(int id_producto){
+        if(DATOS.desactivar(id_producto)){
             return "OK";
         }else{
             return "No se puede desactivar el producto";
         }
     }
     
-    public String activar(int id){
-        if(DATOS.activar(id)){
+    public String activar(int id_producto){
+        if(DATOS.activar(id_producto)){
             return "OK";
         }else{
             return "No se puede activar el producto";
