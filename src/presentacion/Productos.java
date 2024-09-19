@@ -1,12 +1,17 @@
 package presentacion;
 
+import datos.ProductoDAO;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableRowSorter;
 import negocio.ProductoControl;
+import java.awt.event.KeyAdapter; 
+import java.awt.event.KeyEvent; 
 
 /**
  *
@@ -22,18 +27,44 @@ public class Productos extends javax.swing.JInternalFrame {
     
     private final ProductoControl CONTROL;
     
-    
     public Productos() {
         initComponents();
         this.CONTROL=new ProductoControl();
-        this.cargarCategorias();
-    }
+        this.listar("");
+        this.cargarCategorias();  
+        
+        
+        
+    // Agregar el KeyListener para búsqueda automática
+        txtbuscarnombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                listar(txtbuscarnombre.getText());
+            }
+        });
 
+        
+    }
     
     //metodo para cargar categorias
     private void cargarCategorias(){
         DefaultComboBoxModel items = this.CONTROL.seleccionar();
         cbocategoria.setModel(items);
+    }
+    
+    private void listar(String texto){
+        tablalistadopro.setModel(this.CONTROL.listar(texto));
+        TableRowSorter orden = new TableRowSorter(tablalistadopro.getModel());
+        tablalistadopro.setRowSorter(orden);
+        txttotalregistropro.setText("Mostrando "+ this.CONTROL.totalMostrado()+ " de un total de Productos"+this.CONTROL.total()+" registros");
+    }
+    
+    //metodo para las ventanas emergentes
+    private void mensajeError(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje,"ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+    private void mensajeOK(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje,"Exitoso",JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -50,14 +81,14 @@ public class Productos extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtbuscarnombre = new javax.swing.JTextField();
-        btnbuscar3 = new javax.swing.JButton();
+        btnbuscarproducto = new javax.swing.JButton();
         btnregistrar3 = new javax.swing.JButton();
         btneditar3 = new javax.swing.JButton();
         tablalistadoproductos = new javax.swing.JScrollPane();
-        tablalistado3 = new javax.swing.JTable();
+        tablalistadopro = new javax.swing.JTable();
         btndesactivarproductos = new javax.swing.JButton();
         btnactivarproductos = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        txttotalregistropro = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         cbocategoria = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -115,12 +146,12 @@ public class Productos extends javax.swing.JInternalFrame {
             }
         });
 
-        btnbuscar3.setBackground(new java.awt.Color(204, 204, 255));
-        btnbuscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/lupa.png"))); // NOI18N
-        btnbuscar3.setText("Buscar Producto");
-        btnbuscar3.addActionListener(new java.awt.event.ActionListener() {
+        btnbuscarproducto.setBackground(new java.awt.Color(204, 204, 255));
+        btnbuscarproducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/lupa.png"))); // NOI18N
+        btnbuscarproducto.setText("Buscar Producto");
+        btnbuscarproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscar3ActionPerformed(evt);
+                btnbuscarproductoActionPerformed(evt);
             }
         });
 
@@ -138,7 +169,7 @@ public class Productos extends javax.swing.JInternalFrame {
         tablalistadoproductos.setBorder(null);
         tablalistadoproductos.setForeground(new java.awt.Color(0, 102, 102));
 
-        tablalistado3.setModel(new javax.swing.table.DefaultTableModel(
+        tablalistadopro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -146,21 +177,32 @@ public class Productos extends javax.swing.JInternalFrame {
 
             }
         ));
-        tablalistadoproductos.setViewportView(tablalistado3);
+        tablalistadoproductos.setViewportView(tablalistadopro);
 
         btndesactivarproductos.setBackground(new java.awt.Color(255, 153, 153));
         btndesactivarproductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/x.png"))); // NOI18N
         btndesactivarproductos.setText("Desactivar Producto");
         btndesactivarproductos.setBorder(null);
         btndesactivarproductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btndesactivarproductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndesactivarproductosActionPerformed(evt);
+            }
+        });
 
         btnactivarproductos.setBackground(new java.awt.Color(153, 255, 153));
         btnactivarproductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/imagenes/check.png"))); // NOI18N
         btnactivarproductos.setText("Activar Producto");
         btnactivarproductos.setBorder(null);
         btnactivarproductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnactivarproductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactivarproductosActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setText("Total de Registro");
+        txttotalregistropro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txttotalregistropro.setText("Total de Registro");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -176,22 +218,22 @@ public class Productos extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtbuscarnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnbuscar3)
+                                .addComponent(btnbuscarproducto)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnregistrar3)
                                 .addGap(18, 18, 18)
                                 .addComponent(btneditar3))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
+                                .addGap(32, 32, 32)
                                 .addComponent(btndesactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(44, 44, 44)
                                 .addComponent(btnactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(102, 102, 102)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(96, 96, 96)
+                                .addComponent(txttotalregistropro, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                        .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,17 +242,22 @@ public class Productos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtbuscarnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar3)
+                    .addComponent(btnbuscarproducto)
                     .addComponent(btnregistrar3)
                     .addComponent(btneditar3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btndesactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                .addGap(47, 47, 47)
+                .addComponent(tablalistadoproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btndesactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnactivarproductos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(txttotalregistropro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -230,8 +277,8 @@ public class Productos extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(13, Short.MAX_VALUE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         jTabbedPane1.addTab("Listado de productos", jPanel1);
@@ -541,9 +588,9 @@ public class Productos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbuscarnombreActionPerformed
 
-    private void btnbuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnbuscar3ActionPerformed
+    private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
+        this.listar(btnbuscarproducto.getText());
+    }//GEN-LAST:event_btnbuscarproductoActionPerformed
 
     private void txtcantidadproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadproActionPerformed
         // TODO add your handling code here:
@@ -652,11 +699,47 @@ public class Productos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnagregarimagenActionPerformed
 
+    private void btndesactivarproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndesactivarproductosActionPerformed
+        if(tablalistadopro.getSelectedRowCount()==1){
+            String id = String.valueOf(tablalistadopro.getValueAt(tablalistadopro.getSelectedRow(), 0));
+            String nombre = String.valueOf(tablalistadopro.getValueAt(tablalistadopro.getSelectedRow(), 1));
+            if(JOptionPane.showConfirmDialog(this, "¿Deseas desactivar el registro: "+nombre+" ?","Desactivar",JOptionPane.YES_NO_OPTION)== 0){
+                String resp=this.CONTROL.desactivar(Integer.parseInt(id));
+                if(resp.equals("OK")){
+                    this.mensajeOK("Registro desactivado");
+                    this.listar("");
+                }else{
+                    this.mensajeError(resp);
+                }
+            }
+        }else{
+            this.mensajeError("Selecciona un registro para desactivar");
+        }    
+    }//GEN-LAST:event_btndesactivarproductosActionPerformed
+
+    private void btnactivarproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactivarproductosActionPerformed
+        if(tablalistadopro.getSelectedRowCount()==1){
+            String id = String.valueOf(tablalistadopro.getValueAt(tablalistadopro.getSelectedRow(), 0));
+            String nombre = String.valueOf(tablalistadopro.getValueAt(tablalistadopro.getSelectedRow(), 1));
+            if(JOptionPane.showConfirmDialog(this, "¿Deseas activar el registro: "+nombre+" ?","activar",JOptionPane.YES_NO_OPTION)== 0){
+                String resp=this.CONTROL.activar(Integer.parseInt(id));
+                if(resp.equals("OK")){
+                    this.mensajeOK("Registro activado");
+                    this.listar("");
+                }else{
+                    this.mensajeError(resp);
+                }
+            }
+        }else{
+            this.mensajeError("Selecciona un registro para activar");
+        }  
+    }//GEN-LAST:event_btnactivarproductosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactivarproductos;
     private javax.swing.JButton btnagregarimagen;
-    private javax.swing.JButton btnbuscar3;
+    private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btndesactivarproductos;
     private javax.swing.JButton btneditar3;
     private javax.swing.JButton btnregistrar3;
@@ -674,7 +757,6 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
@@ -684,7 +766,7 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblimagen;
-    private javax.swing.JTable tablalistado3;
+    private javax.swing.JTable tablalistadopro;
     private javax.swing.JScrollPane tablalistadoproductos;
     private javax.swing.JTextField txtbuscarnombre;
     private javax.swing.JTextField txtcantidadpro;
@@ -692,5 +774,6 @@ public class Productos extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtdescripcionpro;
     private javax.swing.JTextField txtnombrePro;
     private javax.swing.JTextField txtpreciopro;
+    private javax.swing.JLabel txttotalregistropro;
     // End of variables declaration//GEN-END:variables
 }

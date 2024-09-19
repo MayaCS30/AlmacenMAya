@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SENATI/Documents/NetBeansProjects/Almacen/src/presentacion/Categorias.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/presentacion/Principal.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/entidades/Categoria.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/negocio/ProductoControl.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/datos/CategoriaDAO.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/datos/ProductoDAO.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/presentacion/Productos.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/negocio/CategoriaControl.java</file>
+            <file>file:/C:/Users/User/OneDrive/Documentos/NetBeansProjects/AlmacenMaya/AlmacenMAya/src/presentacion/Categorias.java</file>
         </group>
     </open-files>
 </project-private>

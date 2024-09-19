@@ -21,7 +21,6 @@ public class CategoriaDAO implements CategoriaInterface<Categoria>{
     private boolean resp;
     
     //Constructor
-
     public CategoriaDAO() {
         CON = Conexion.getInstancia();
     }

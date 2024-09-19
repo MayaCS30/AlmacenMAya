@@ -40,9 +40,10 @@ public class ProductoControl {
         return items;
     }
     
-     public DefaultTableModel listar(String texto){
+    public DefaultTableModel listar(String texto){
         List<Productos>lista= new ArrayList<>();
-        lista.add((Productos) DATOS.listar(texto));
+        lista.addAll(DATOS.listar(texto));
+        
         String[] titulos={"IdProducto","IdCategoria","Nombre Producto","Descripción Producto","Imagen producto","Codigo Producto","Marca Producto","Cantidad Producto","Fecha Vencimiento","Precio Compra","Condición"};
         this.modeloTabla=new DefaultTableModel(null,titulos);
         
@@ -66,7 +67,7 @@ public class ProductoControl {
             registro[6]=item.getMarcar_producto();
             registro[7]=Integer.toString(item.getCantidad_producto());
             registro[8]=item.getFecha_vencimiento();
-            registro[9]=Integer.toString((int) item.getPrecio_compra());
+            registro[9]=Double.toString(item.getPrecio_compra());
             registro[10]=condicion;
             
             this.modeloTabla.addRow(registro);
